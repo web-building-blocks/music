@@ -1,8 +1,11 @@
+// 
+
 import { Metadata } from "next"
 import Image from "next/image"
-import { PlusCircledIcon } from "@radix-ui/react-icons"
+// import { PlusCircledIcon } from "@radix-ui/react-icons"
+import { AddMusicDialog } from "@/components/add-music"
 
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -16,15 +19,19 @@ import { AlbumArtwork } from "@/components/album-artwork"
 import { Menu } from "@/components/menu"
 import { PodcastEmptyPlaceholder } from "@/components/podcast-empty-placeholder"
 import { Sidebar } from "@/components/sidebar"
-import { listenNowAlbums, madeForYouAlbums } from "@/data/albums"
-import { playlists } from "@/data/playlists"
+// import { listenNowAlbums, madeForYouAlbums } from "@/data/albums"
+// import { playlists } from "@/data/playlists"
+import { getAlbumsByType, getPlaylists } from "@/lib/mongo"
 
 export const metadata: Metadata = {
   title: "Music App",
   description: "Example music app using the components.",
 }
 
-export default function MusicPage() {
+export default async function MusicPage() {
+  const listenNowAlbums = await getAlbumsByType("listenNow")
+  const madeForYouAlbums = await getAlbumsByType("madeForYou")
+  const playlists = (await getPlaylists()).map((p) => p.name)
   return (
     <>
       <div className="md:hidden">
@@ -63,10 +70,11 @@ export default function MusicPage() {
                         </TabsTrigger>
                       </TabsList>
                       <div className="ml-auto mr-4">
-                        <Button>
+                        {/* <Button>
                           <PlusCircledIcon className="mr-2 h-4 w-4" />
                           Add music
-                        </Button>
+                        </Button> */}
+                        <AddMusicDialog/>
                       </div>
                     </div>
                     <TabsContent
@@ -112,8 +120,8 @@ export default function MusicPage() {
                       <Separator className="my-4" />
                       <div className="relative">
                         <ScrollArea>
-                          <div className="flex space-x-4 pb-4">
-                            {madeForYouAlbums.map((album) => (
+                          <div className="flex space-x-4 pb-4">                            {madeForYouAlbums.map((album) => (
+
                               <AlbumArtwork
                                 key={album.name}
                                 album={album}

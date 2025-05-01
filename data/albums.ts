@@ -29,6 +29,12 @@ export const listenNowAlbums: Album[] = [
     cover:
       "https://images.unsplash.com/photo-1490300472339-79e4adc6be4a?w=300&dpr=2&q=80",
   },
+  {
+    name: "UI Components",
+    artist: "Alpha Beta",
+    cover:
+      "https://cdn.pixabay.com/photo/2024/02/07/18/42/music-8559592_1280.jpg",
+  },
 ]
 
 export const madeForYouAlbums: Album[] = [
@@ -67,5 +73,11 @@ export const madeForYouAlbums: Album[] = [
     artist: "Lena Logic",
     cover:
       "https://images.unsplash.com/photo-1490300472339-79e4adc6be4a?w=300&dpr=2&q=80",
+  },
+  {
+    name: "UI Components",
+    artist: "Alpha Beta",
+    cover:
+      "https://cdn.pixabay.com/photo/2024/02/07/18/42/music-8559592_1280.jpg",
   },
 ]

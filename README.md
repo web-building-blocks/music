@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎵 Music Dashboard
 
-## Getting Started
+A modern music browsing and management web application built with **Next.js **, **ShadCN UI**, and **MongoDB**. Users can explore curated albums, add new music dynamically, and enjoy a clean, responsive interface.
 
-First, run the development server:
+---
+
+## Features
+
+- Explore "Listen Now" and "Made for You" albums
+- Add new music via interactive dialog
+- Real-time updates without page reload
+- Cover URL validation with user feedback
+- Fully modular UI with ShadCN (Radix UI + Tailwind CSS)
+- MongoDB integration for persistent data storage
+
+---
+
+## Tech Stack
+
+| Layer        | Technology                  |
+|-------------|------------------------------|
+| Frontend     | Next.js 15 (App Router)     |
+| UI Components| ShadCN (Radix UI + Tailwind)|
+| State        | React `useState`, `useRouter` |
+| Backend      | Next.js API Routes (App Router) |
+| Database     | MongoDB (via `mongodb` package) |
+
+---
+
+## Project Structure
+
+```
+music-dashboard/
+├── app/
+│   ├── api/music/route.ts        # POST handler for new music
+│   ├── listen-now/page.tsx       # Music page layout
+├── components/
+│   ├── add-music.tsx             # Dialog form to add music
+│   ├── album-artwork.tsx         # Album display component
+│   └── ui/                       # ShadCN UI components
+├── lib/mongo.ts                  # MongoDB client + helpers
+├── public/                       # Static files
+├── scripts/seed.ts               # Optional DB seeding script
+├── .env                          # Local environment config
+├── next.config.js                # Next.js configuration
+└── README.md
+```
+
+---
+
+## Setup & Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/music-dashboard.git
+cd music-dashboard
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env` file in the root:
+
+```
+MONGODB_URI=mongodb://localhost:27017
+```
+
+### 4. Seed initial data
+
+```bash
+npx tsx scripts/seed.ts
+```
+
+### 5. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser at [http://localhost:3000](http://localhost:3000/listen-now)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## API Reference
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### `POST /api/music`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Request Body:**
 
-## Deploy on Vercel
+```json
+{
+  "name": "Song Title",
+  "artist": "Artist Name",
+  "cover": "https://example.com/image.jpg"
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Response:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `201 Created`: `{ insertedId: "...mongoId" }`
+- `500 Error`: `{ error: "Insert failed" }`
+
+---
+
