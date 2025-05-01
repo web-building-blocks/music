@@ -53,8 +53,8 @@ music-dashboard/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/music-dashboard.git
-cd music-dashboard
+git clone https://github.com/web-building-blocks/music.git
+cd music
 ```
 
 ### 2. Install dependencies
