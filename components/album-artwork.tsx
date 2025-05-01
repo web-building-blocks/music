@@ -32,20 +32,17 @@ export function AlbumArtwork({
   ...props
 }: AlbumArtworkProps) {
   return (
-    <div className={cn("space-y-3", className)} {...props}>
+    <div className={cn("space-y-3", className)}  {...props}>
       <ContextMenu>
         <ContextMenuTrigger>
-          <div className="overflow-hidden rounded-md">
-            <Image
-              src={album.cover}
-              alt={album.name}
-              width={width}
-              height={height}
-              className={cn(
-                "h-auto w-auto object-cover transition-all hover:scale-105",
-                aspectRatio === "portrait" ? "aspect-[3/4]" : "aspect-square"
-              )}
-            />
+          <div className={cn("space-y-3", className)} style={{ width, height }} {...props}>
+          <Image
+            src={album.cover}
+            alt={album.name}
+            width={width}
+            height={height}
+            className="w-full h-full object-cover rounded-md"
+          />
           </div>
         </ContextMenuTrigger>
         <ContextMenuContent className="w-40">

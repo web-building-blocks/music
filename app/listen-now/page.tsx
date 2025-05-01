@@ -2,9 +2,10 @@
 
 import { Metadata } from "next"
 import Image from "next/image"
-import { PlusCircledIcon } from "@radix-ui/react-icons"
+// import { PlusCircledIcon } from "@radix-ui/react-icons"
+import { AddMusicDialog } from "@/components/add-music"
 
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -69,10 +70,11 @@ export default async function MusicPage() {
                         </TabsTrigger>
                       </TabsList>
                       <div className="ml-auto mr-4">
-                        <Button>
+                        {/* <Button>
                           <PlusCircledIcon className="mr-2 h-4 w-4" />
                           Add music
-                        </Button>
+                        </Button> */}
+                        <AddMusicDialog/>
                       </div>
                     </div>
                     <TabsContent
